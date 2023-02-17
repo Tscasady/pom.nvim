@@ -10,13 +10,13 @@ cmd(
     count: (number) Any count supplied <count>
   --]]
   function(opts) pom.set_timer(opts.args) end,
-  {}
+  {nargs = "*"}
 )
 
 cmd(
   'Pomreset',
   function() pom.reset() end,
-  {}
+  { }
 )
 
 cmd(

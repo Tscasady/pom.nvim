@@ -4,8 +4,9 @@ M.setup = function (opts)
 end
 
 M.set_timer = function(opts)
-  print 'working?'
+  print(opts)
 end
+
 
 M.pause = function(opts)
   print 'working?'
@@ -23,5 +24,5 @@ maybe just have a clock count down, idk this should be contnual, but async?
 what happens to our timer when we close nvim. probably shouldn't do anything
 --]]
 
-
 return M
+
