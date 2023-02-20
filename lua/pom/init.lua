@@ -1,11 +1,33 @@
 local M = {}
+--local uv = vim.loop
+local loop = vim.loop
 
+--vim.defer_fn({fn}, {timeout})
+--vim.timer_start({os.clock}, {})
+--timer_stopall
+--timer_info({id})    GetTimer()->timer_info()
+--timer_pause
 M.setup = function (opts)
 end
 
+
+-- M.set_timer = function(opts)
+--   local minutes = tonumber(opts) * 60000
+--   print(minutes)
+--   vim.defer_fn(print('hi'), minutes)
+--   --vim.defer_fn(vim.cmd([[:CellularAutomaton make_it_rain<CR>]]), minutes)
+-- end
+--vim.cmd(":set statusline=%{" .. minutes .. "}")
+
 M.set_timer = function(opts)
-  print(opts)
+  local minutes = tonumber(opts) * 60000
+  local timer = loop.new_timer()
+  timer:start(minutes, 0, vim.schedule_wrap(function()
+    vim.cmd([[CellularAutomaton make_it_rain]])
+  end
+  ))
 end
+
 
 
 M.pause = function(opts)
@@ -16,13 +38,6 @@ M.reset = function(opts)
   print 'working?'
 end
 
---[[os.time
-os.difftime
-os.clock returns current seconds?, we coudl increment minute every 60 or compare / format os.time or something 
-actually idk what this is doing, it is supposed to be seconds but hte values are werid
-maybe just have a clock count down, idk this should be contnual, but async? 
-what happens to our timer when we close nvim. probably shouldn't do anything
---]]
-
+--uv.timer_get_due_in(timer)
 return M
 
